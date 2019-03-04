@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.8'
   gem 'sqlite3', '1.3.11'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -28,7 +29,6 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem 'rspec-rails'
   gem 'rails-controller-testing', '0.1.1'
   gem 'guard', '2.13.0'
   gem 'guard-minitest', '2.4.4'
