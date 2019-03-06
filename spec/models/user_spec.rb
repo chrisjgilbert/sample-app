@@ -38,6 +38,11 @@ RSpec.describe User, type: :model do
           expect(@user).not_to be_valid
         end
       end
+      it "rejects if email is already taken" do
+        user = @user.dup
+        @user.save
+        expect(user).not_to be_valid
+      end
     end
   end
 end
