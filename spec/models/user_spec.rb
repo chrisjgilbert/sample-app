@@ -44,6 +44,13 @@ RSpec.describe User, type: :model do
         @user.save
         expect(user).not_to be_valid
       end
+      it "converts addresses to downcase" do
+        mixed_case_eamil = 'UsEr@EmAiL.CoM'
+        @user.email = mixed_case_eamil
+        @user.save
+        @user.reload
+        expect(@user.email).to eq'user@email.com'
+      end
     end
   end
 end
