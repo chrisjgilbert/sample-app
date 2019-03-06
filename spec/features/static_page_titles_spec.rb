@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'static page titles', :type => :feature do
+RSpec.describe 'homepage links', :type => :feature do
   base_title = "Ruby on Rails Tutorial Sample App"
   before do
     visit root_path
@@ -34,6 +34,14 @@ RSpec.describe 'static page titles', :type => :feature do
       click_on "Contact"
       expect(current_path).to eq contact_path
       expect(page.title).to eq "contact | #{base_title}"
+    end
+  end
+
+  describe 'sign up' do
+    it "has `sign up` as title" do
+      click_on "Sign up now!"
+      expect(current_path).to eq sign_up_path
+      expect(page.title).to eq "sign up | #{base_title}"
     end
   end
 end
