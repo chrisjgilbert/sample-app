@@ -38,8 +38,9 @@ RSpec.describe User, type: :model do
           expect(@user).not_to be_valid
         end
       end
-      it "rejects if email is already taken" do
+      it "case sensitive rejection if email is already taken" do
         user = @user.dup
+        user.email = user.email.upcase
         @user.save
         expect(user).not_to be_valid
       end
