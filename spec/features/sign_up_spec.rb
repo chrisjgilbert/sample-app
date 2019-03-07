@@ -10,7 +10,8 @@ RSpec.describe "user sign up", :type => :feature do
     fill_in 'user[password]', with: 'a'
     fill_in 'user[password_confirmation]', with: 'a'
     click_on 'Create my account'
-    expect(page).to have_content('3 errors')
+    expect(page).to have_content '3 errors'
+    expect(page).not_to have_content 'Welcome to the Sample App!'
     expect(current_path).to eq sign_up_path
   end
 
@@ -24,7 +25,7 @@ RSpec.describe "user sign up", :type => :feature do
     fill_in 'user[password]', with: user.password
     fill_in 'user[password_confirmation]', with: user.password
     click_on 'Create my account'
-    expect(page).not_to have_content('errors')
-    expect(current_path).to eq "/users/1"
+    expect(page).not_to have_content 'errors'
+    expect(page).to have_content 'Welcome to the Sample App!'
   end
 end
