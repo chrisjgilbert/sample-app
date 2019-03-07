@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'validations' do
     before do
-      @user = User.new(name: 'Example User', email: 'user@example.com')
+      @user = User.new(name: 'Example User',
+                       email: 'user@example.com',
+                       password: 'secret',
+                       password_confirmation: 'secret')
     end
     context 'name' do
       it "is valid when attributes are valid" do
