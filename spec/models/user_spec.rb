@@ -55,5 +55,15 @@ RSpec.describe User, type: :model do
         expect(@user.email).to eq'user@email.com'
       end
     end
+    context 'password' do
+      it "must be present" do
+        @user.password = @user.password_confirmation = "  "
+        expect(@user).not_to be_valid
+      end
+      it "should have a minimum length of 6" do
+        @user.password = @user.password_confirmation = "a" * 5
+        expect(@user).not_to be_valid
+      end
+    end
   end
 end
