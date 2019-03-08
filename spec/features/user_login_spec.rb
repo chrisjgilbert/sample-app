@@ -13,7 +13,7 @@ RSpec.describe "user sign up", :type => :feature do
       fill_in 'session[email]', with: 'blah@blah.com'
       fill_in 'session[password]', with: 'blah'
       click_on 'Log in'
-      expect(page).to have_content 'Invalid email/password combintaion'
+      expect(page).to have_content 'Invalid email/password combination'
     end
   end
   context 'successful' do
@@ -21,7 +21,7 @@ RSpec.describe "user sign up", :type => :feature do
       fill_in 'session[email]', with: @user.email
       fill_in 'session[password]', with: @user.password
       click_on 'Log in'
-      expect(page).not_to have_content 'Invalid email/password combintaion'
+      expect(page).not_to have_content 'Invalid email/password combination'
     end
   end
 end
