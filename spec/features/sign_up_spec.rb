@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "user sign up", :type => :feature do
+RSpec.describe 'user sign up', type: :feature do
   before do
     visit new_user_path
   end
-  context "failure" do
-    it "wont allow a user with invalid attributes to sign up" do
+  context 'failure' do
+    it 'wont allow a user with invalid attributes to sign up' do
       fill_in 'user[name]', with: '   '
       fill_in 'user[email]', with: 'jon@b'
       fill_in 'user[password]', with: 'a'
@@ -16,8 +18,8 @@ RSpec.describe "user sign up", :type => :feature do
       expect(current_path).to eq sign_up_path
     end
   end
-  context "success" do
-    it "will allow a user with valid attributes to sign up" do
+  context 'success' do
+    it 'will allow a user with valid attributes to sign up' do
       user = User.new(name: 'Test User',
                       email: 'test@user.com',
                       password: 'secret',
@@ -31,5 +33,4 @@ RSpec.describe "user sign up", :type => :feature do
       expect(page).to have_content 'Welcome to the Sample App!'
     end
   end
-
 end

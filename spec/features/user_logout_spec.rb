@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "user log out", :type => :feature do
+RSpec.describe 'user log out', type: :feature do
   before do
     @user = User.create(name: 'test',
                         email: 'test@example.com',
@@ -9,7 +11,7 @@ RSpec.describe "user log out", :type => :feature do
     visit login_path
   end
   context 'successful' do
-    it "logs user in" do
+    it 'logs user in' do
       fill_in 'session[email]', with: @user.email
       fill_in 'session[password]', with: @user.password
       click_on 'Log in'
