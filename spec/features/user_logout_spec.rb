@@ -11,10 +11,8 @@ RSpec.describe 'user log out', type: :feature do
     visit login_path
   end
   context 'successful' do
-    it 'logs user in' do
-      fill_in 'session[email]', with: @user.email
-      fill_in 'session[password]', with: @user.password
-      click_on 'Log in'
+    it 'logs user out' do
+      login @user
       expect(page).not_to have_link 'Log In'
       expect(page).not_to have_link 'Sign Up'
       expect(page).to have_content 'Welcome to the Sample App!'

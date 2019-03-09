@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  before do
+    @user = User.new(name: 'Example User',
+                     email: 'user@example.com',
+                     password: 'secret',
+                     password_confirmation: 'secret')
+  end
   describe 'validations' do
-    before do
-      @user = User.new(name: 'Example User',
-                       email: 'user@example.com',
-                       password: 'secret',
-                       password_confirmation: 'secret')
-    end
     context 'name' do
       it 'is valid when attributes are valid' do
         expect(@user).to be_valid
@@ -66,6 +66,11 @@ RSpec.describe User, type: :model do
         @user.password = @user.password_confirmation = 'a' * 5
         expect(@user).not_to be_valid
       end
+    end
+  end
+  describe 'authenticated?' do
+    it 'should return false for a user with nil digest' do
+      expect(@user).not_to be_authenticated('')
     end
   end
 end
