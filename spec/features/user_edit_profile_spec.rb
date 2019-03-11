@@ -39,6 +39,7 @@ RSpec.describe 'edit user profile', type: :feature do
     it 'is redirected to the login path' do
       visit edit_user_path(@user)
       expect(current_path).to eq login_path
+      expect(page).to have_content 'Please log in'
     end
   end
 end
