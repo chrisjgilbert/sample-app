@@ -5,7 +5,7 @@ RSpec.describe UserMailer, type: :mailer do
     let(:user) { double(:user) }
     let(:mail) { UserMailer.account_activation(user) }
 
-    before(:each) do
+    before do
       allow(user).to receive(:email) { 'test@user.com' }
       allow(user).to receive(:name) { 'test' }
       allow(user).to receive(:activation_token) { '123' }
