@@ -15,7 +15,6 @@ RSpec.describe 'user sign up', type: :feature do
       click_on 'Create my account'
       expect(page).to have_content '3 errors'
       expect(page).not_to have_content 'Welcome to the Sample App!'
-      expect(current_path).to eq sign_up_path
     end
   end
   context 'success' do
