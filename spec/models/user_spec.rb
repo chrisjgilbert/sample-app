@@ -7,7 +7,8 @@ RSpec.describe User, type: :model do
     @user = User.new(name: 'Example User',
                      email: 'user@example.com',
                      password: 'secret',
-                     password_confirmation: 'secret')
+                     password_confirmation: 'secret',
+                     activated: true)
   end
   describe 'validations' do
     context 'name' do
@@ -69,8 +70,12 @@ RSpec.describe User, type: :model do
     end
   end
   describe 'authenticated?' do
-    it 'should return false for a user with nil digest' do
-      expect(@user).not_to be_authenticated('')
+    it 'should return false for a user with nil activaton digest' do
+      expect(@user).not_to be_authenticated(:activation, '')
+    end
+
+    it 'should return false for a user with nil password digest' do
+      expect(@user).not_to be_authenticated(:password, '')
     end
   end
 end

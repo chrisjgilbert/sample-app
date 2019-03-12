@@ -22,7 +22,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'renders the link' do
-      expect(mail.body.encoded).to include("http://localhost:3000/account_activation/123/edit?email=test%40user.com")
+      expect(mail.body.encoded).to include("http://localhost:3000/account_activations/123/edit?email=test%40user.com")
     end
   end
 

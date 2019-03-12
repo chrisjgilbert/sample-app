@@ -8,7 +8,9 @@ RSpec.describe 'edit user profile', type: :feature do
     @user = User.create(name: 'test',
                         email: 'test@example.com',
                         password: 'secret',
-                        password_confirmation: 'secret')
+                        password_confirmation: 'secret',
+                        activated: true,
+                        activated_at: Time.zone.now)
   end
 
   context 'when user is logged in' do
@@ -29,7 +31,9 @@ RSpec.describe 'edit user profile', type: :feature do
         @user_2 = User.create(name: 'test2',
                             email: 'test2@example.com',
                             password: 'secret',
-                            password_confirmation: 'secret')
+                            password_confirmation: 'secret',
+                            activated: true,
+                            activated_at: Time.zone.now)
         visit edit_user_path(@user_2)
         expect(current_path).to eq root_path
       end

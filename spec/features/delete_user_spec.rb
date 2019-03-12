@@ -8,12 +8,16 @@ RSpec.describe 'edit user profile', type: :feature do
     @user = User.create(name: 'test',
                         email: 'test@example.com',
                         password: 'secret',
-                        password_confirmation: 'secret')
+                        password_confirmation: 'secret',
+                        activated: true,
+                        activated_at: Time.zone.now)
     @admin_user = User.create(name: 'admin',
                               email: 'admin@example.com',
                               password: 'password',
                               password_confirmation: 'password',
-                              admin: true)
+                              admin: true,
+                              activated: true,
+                              activated_at: Time.zone.now)
   end
   context 'when user is admin' do
     it 'can delete users' do

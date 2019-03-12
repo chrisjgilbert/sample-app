@@ -7,7 +7,9 @@ RSpec.describe 'user log in', type: :feature do
     @user = User.create(name: 'test',
                         email: 'test@example.com',
                         password: 'secret',
-                        password_confirmation: 'secret')
+                        password_confirmation: 'secret',
+                        activated: true,
+                        activated_at: Time.zone.now)
     visit login_path
   end
   context 'unsuccessful' do

@@ -18,18 +18,19 @@ RSpec.describe 'user sign up', type: :feature do
     end
   end
   context 'success' do
-    it 'will allow a user with valid attributes to sign up' do
+    it 'will alert user to activate their account' do
       user = User.new(name: 'Test User',
                       email: 'test@user.com',
                       password: 'secret',
-                      password_confirmation: 'secret')
+                      password_confirmation: 'secret'
+                      )
       fill_in 'user[name]', with: user.name
       fill_in 'user[email]', with: user.email
       fill_in 'user[password]', with: user.password
       fill_in 'user[password_confirmation]', with: user.password
       click_on 'Create my account'
       expect(page).not_to have_content 'errors'
-      expect(page).to have_content 'Welcome to the Sample App!'
+      expect(page).to have_content 'Please check your email to activate your account'
     end
   end
 end
