@@ -12,8 +12,7 @@ class SessionsController < ApplicationController
         flash[:success] = 'Welcome to the Sample App!'
         redirect_back_or user
       else
-        message = 'Account not activated! Please check your email'
-        flash[:warning] = message
+        flash[:warning] = 'Account not activated! Please check your email'
         redirect_to root_url
       end
     else
