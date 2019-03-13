@@ -34,4 +34,10 @@ RSpec.describe Micropost, type: :model do
       end
     end
   end
+  describe 'associations' do
+    it 'is destroyed if user destroyed' do
+      @micropost = @user.microposts.create(content: 'test')
+      expect { @user.destroy }.to change { Micropost.count }.by(-1)
+    end
+  end
 end
