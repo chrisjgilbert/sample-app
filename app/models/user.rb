@@ -18,6 +18,13 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id',
                                   dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                  foreign_key: 'followed_id',
+                                  dependent: :destroy
+  has_many :following, through: :active_relationships,
+                       source: :followed
+  has_many :followers, through: :passive_relationships,
+                       source: :follower
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ?
@@ -73,6 +80,18 @@ class User < ApplicationRecord
 
   def feed
     Micropost.where("user_id = ?", id)
+  end
+
+  def follow(followed)
+    active_relationships.create(followed_id: followed.id)
+  end
+
+  def unfollow(followed)
+    active_relationships.find_by(followed_id: followed.id).destroy
+  end
+
+  def following?(user)
+    following.include?(user)
   end
 
   private

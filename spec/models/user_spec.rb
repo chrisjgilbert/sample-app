@@ -9,6 +9,16 @@ RSpec.describe User, type: :model do
                      password: 'secret',
                      password_confirmation: 'secret',
                      activated: true)
+     @user_2 = User.create(name: 'Example User',
+                     email: 'test@example.com',
+                     password: 'secret',
+                     password_confirmation: 'secret',
+                     activated: true)
+     @user_3 = User.create(name: 'Another User',
+                     email: 'another@example.com',
+                     password: 'secret',
+                     password_confirmation: 'secret',
+                     activated: true)
   end
   describe 'validations' do
     context 'name' do
@@ -69,13 +79,35 @@ RSpec.describe User, type: :model do
       end
     end
   end
-  describe 'authenticated?' do
+  describe '::authenticated?' do
     it 'should return false for a user with nil activaton digest' do
       expect(@user).not_to be_authenticated(:activation, '')
     end
 
     it 'should return false for a user with nil password digest' do
       expect(@user).not_to be_authenticated(:password, '')
+    end
+  end
+  describe '::following?' do
+    it 'returns false if user is not following a user' do
+      expect(@user_2).not_to be_following(@user_3)
+    end
+    it 'returns true if a user is folowing a given user' do
+      @user_2.active_relationships.create(followed_id: @user_3.id)
+      expect(@user_2).to be_following(@user_3)
+    end
+  end
+  describe '::follow' do
+    it 'creates an active relationship between 2 users' do
+      @user_2.follow(@user_3)
+      expect(@user_2).to be_following(@user_3)
+    end
+  end
+  describe '::unfollow' do
+    it 'destroys the active relationships between 2 users' do
+      @user_2.follow(@user_3)
+      @user_2.unfollow(@user_3)
+      expect(@user_2).not_to be_following(@user_3)
     end
   end
 end
