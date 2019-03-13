@@ -7,8 +7,7 @@ RSpec.describe Micropost, type: :model do
                      password: 'secret',
                      password_confirmation: 'secret',
                      activated: true)
-    @micropost = Micropost.new(content: 'lorem ipsum',
-                               user_id: @user.id)
+    @micropost = @user.microposts.build(content: 'lorem ipsum')
   end
   describe 'validations' do
     context 'user_id' do
